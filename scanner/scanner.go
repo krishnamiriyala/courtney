@@ -9,7 +9,7 @@ import (
 
 	"github.com/dave/astrid"
 	"github.com/dave/brenda"
-	"github.com/dave/courtney/shared"
+	"github.com/krishnamiriyala/courtney/shared"
 	"github.com/pkg/errors"
 	"golang.org/x/tools/go/packages"
 )
@@ -138,12 +138,10 @@ func (f *FileMap) FindExcludes() error {
 
 	ast.Inspect(f.file, func(node ast.Node) bool {
 		if err != nil {
-			// notest
 			return false
 		}
 		b, inner := f.inspectNode(node)
 		if inner != nil {
-			// notest
 			err = inner
 			return false
 		}
@@ -176,13 +174,12 @@ func (f *FileMap) findScope(node ast.Node, filter func(ast.Node) bool) ast.Node 
 			return scopes[i]
 		}
 	}
-	// notest
 	return nil
 }
 
 func (f *FileMap) inspectComment(cg *ast.CommentGroup) {
 	for _, cm := range cg.List {
-		if cm.Text != "//notest" && cm.Text != "// notest" {
+		if cm.Text != "// TODO: notest" {
 			continue
 		}
 
@@ -369,24 +366,19 @@ func (f *FileMap) inspectNodeForWrap(block *ast.BlockStmt, search ast.Expr) func
 			// var e error = foo()
 			gd, ok := n.Decl.(*ast.GenDecl)
 			if !ok {
-				// notest
 				return true
 			}
 			if gd.Tok != token.VAR {
-				// notest
 				return true
 			}
 			if len(gd.Specs) != 1 {
-				// notest
 				return true
 			}
 			spec, ok := gd.Specs[0].(*ast.ValueSpec)
 			if !ok {
-				// notest
 				return true
 			}
 			if len(spec.Names) != 1 || len(spec.Values) != 1 {
-				// notest
 				return true
 			}
 			newSearch := spec.Names[0]
@@ -397,7 +389,6 @@ func (f *FileMap) inspectNodeForWrap(block *ast.BlockStmt, search ast.Expr) func
 
 		case *ast.AssignStmt:
 			if len(n.Lhs) != 1 || len(n.Rhs) != 1 {
-				// notest
 				return true
 			}
 			newSearch := n.Lhs[0]
@@ -417,7 +408,6 @@ func (f *FileMap) isErrorCall(expr, search ast.Expr) bool {
 	}
 	if !f.isError(n) {
 		// never gets here, but leave it in for completeness
-		// notest
 		return false
 	}
 	for _, arg := range n.Args {
@@ -456,7 +446,6 @@ func (f *FileMap) isErrorReturnNamedResultParameters(r *ast.ReturnStmt, search a
 	if last.Names == nil {
 		// anonymous returns - shouldn't be able to get here because a bare
 		// return statement with either have zero results or named results.
-		// notest
 		return false
 	}
 	id := last.Names[len(last.Names)-1]
@@ -517,7 +506,6 @@ func (f *FileMap) isZero(v ast.Expr) bool {
 		case constant.Int, constant.Float, constant.Complex:
 			return constant.Sign(t.Value) == 0
 		default:
-			// notest
 			return false
 		}
 	}

@@ -12,11 +12,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dave/courtney/shared"
-	"github.com/dave/courtney/tester"
 	"github.com/dave/patsy"
 	"github.com/dave/patsy/builder"
 	"github.com/dave/patsy/vos"
+	"github.com/krishnamiriyala/courtney/shared"
+	"github.com/krishnamiriyala/courtney/tester"
 	"golang.org/x/tools/cover"
 )
 

@@ -10,9 +10,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/dave/courtney/shared"
-	"github.com/dave/courtney/tester/logger"
-	"github.com/dave/courtney/tester/merge"
+	"github.com/krishnamiriyala/courtney/shared"
+	"github.com/krishnamiriyala/courtney/tester/logger"
+	"github.com/krishnamiriyala/courtney/tester/merge"
 	"github.com/pkg/errors"
 	"golang.org/x/tools/cover"
 )
@@ -202,7 +202,7 @@ func (t *Tester) processDir(dir string) error {
 		}
 	}
 	if !foundTest {
-		// notest
+		// TODO: notest
 		return nil
 	}
 
@@ -219,12 +219,12 @@ func (t *Tester) processDir(dir string) error {
 	}
 	args = append(args, "test")
 	if t.setup.Short {
-		// notest
+		// TODO: notest
 		// TODO: add test
 		args = append(args, "-short")
 	}
 	if t.setup.Timeout != "" {
-		// notest
+		// TODO: notest
 		// TODO: add test
 		args = append(args, "-timeout", t.setup.Timeout)
 	}
@@ -234,7 +234,7 @@ func (t *Tester) processDir(dir string) error {
 		args = append(args, "-v")
 	}
 	if len(t.setup.TestArgs) > 0 {
-		// notest
+		// TODO: notest
 		args = append(args, t.setup.TestArgs...)
 	}
 	if t.setup.Verbose {
@@ -252,12 +252,12 @@ func (t *Tester) processDir(dir string) error {
 	exe.Stderr = stderr
 	err = exe.Run()
 	if strings.Contains(combined.String(), "no buildable Go source files in") {
-		// notest
+		// TODO: notest
 		return nil
 	}
 	if err != nil {
-		// TODO: Remove when https://github.com/dave/courtney/issues/4 is fixed
-		// notest
+		// TODO: Remove when https://github.com/krishnamiriyala/courtney/issues/4 is fixed
+		// TODO: notest
 		if t.setup.Verbose {
 			// They will already have seen the output
 			return errors.Wrap(err, "Error executing test")
@@ -288,7 +288,7 @@ func undent(lines []string) []string {
 	for _, line := range lines {
 		loc := indentRegex.FindStringIndex(line)
 		if len(loc) == 0 {
-			// notest
+			// TODO: notest
 			// string is empty?
 			continue
 		}
@@ -300,7 +300,7 @@ func undent(lines []string) []string {
 	var out []string
 	for _, line := range lines {
 		if line == "" {
-			// notest
+			// TODO: notest
 			out = append(out, "")
 		} else {
 			out = append(out, "\t"+line[mindent:])

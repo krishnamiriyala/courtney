@@ -8,15 +8,14 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/dave/courtney/scanner"
-	"github.com/dave/courtney/shared"
-	"github.com/dave/courtney/tester"
 	"github.com/dave/patsy"
 	"github.com/dave/patsy/vos"
+	"github.com/krishnamiriyala/courtney/scanner"
+	"github.com/krishnamiriyala/courtney/shared"
+	"github.com/krishnamiriyala/courtney/tester"
 )
 
 func main() {
-	// notest
 	env := vos.Os()
 
 	enforceFlag := flag.Bool("e", false, "Enforce 100% code coverage")
@@ -91,14 +90,12 @@ type argsValue struct {
 var _ flag.Value = (*argsValue)(nil)
 
 func (v *argsValue) String() string {
-	// notest
 	if v == nil {
 		return ""
 	}
 	return strings.Join(v.args, " ")
 }
 func (v *argsValue) Set(s string) error {
-	// notest
 	v.args = append(v.args, s)
 	return nil
 }

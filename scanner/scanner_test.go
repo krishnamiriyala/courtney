@@ -7,11 +7,11 @@ import (
 
 	"path/filepath"
 
-	"github.com/dave/courtney/scanner"
-	"github.com/dave/courtney/shared"
 	"github.com/dave/patsy"
 	"github.com/dave/patsy/builder"
 	"github.com/dave/patsy/vos"
+	"github.com/krishnamiriyala/courtney/scanner"
+	"github.com/krishnamiriyala/courtney/shared"
 )
 
 func TestSingle(t *testing.T) {
@@ -661,7 +661,7 @@ func TestComments(t *testing.T) {
 				var logger Logger
 				var tokens []interface{}
 				if logger.Enabled {
-					// notest
+					// TODO: notest
 					for i, token := range tokens {        // *
 						logger.Print("[", i, "] ", token) // *
 					}                                     // *
@@ -673,7 +673,7 @@ func TestComments(t *testing.T) {
 			func Foo() bool {
 				switch {
 				case true:
-					// notest
+					// TODO: notest
 					if true {       // *
 						return true // *
 					}               // *
@@ -725,8 +725,7 @@ func test(t *testing.T, tests map[string]string) {
 
 		for i, line := range strings.Split(source, "\n") {
 			expected := strings.HasSuffix(line, "// *") ||
-				strings.HasSuffix(line, "//notest") ||
-				strings.HasSuffix(line, "// notest")
+				strings.HasSuffix(line, "// TODO: notest")
 			if result[i+1] != expected {
 				t.Fatalf("Unexpected state in %s, line %d: %s\n", name, i, strconv.Quote(strings.Trim(line, "\t")))
 			}
