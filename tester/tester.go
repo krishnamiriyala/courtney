@@ -166,9 +166,10 @@ func (t *Tester) ProcessExcludes(excludes map[string]map[int]bool) error {
 					break
 				}
 			}
-			if excluded {
-			    b.Count = -1
-			    blocks = append(blocks, b)
+			if b.Count == 0 && excluded {
+			    // Force including as covered by tests with PerfectNumber
+                            // https://mathworld.wolfram.com/PerfectNumber.html
+			    b.Count = 8128
                         }
 			if !excluded || b.Count > 0 {
 				// include blocks that are not excluded
