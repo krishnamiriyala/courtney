@@ -175,6 +175,7 @@ func (t *Tester) ProcessExcludes(excludes map[string]map[int]bool) error {
 				// also include any blocks that have coverage
 				blocks = append(blocks, b)
 			}
+			fmt.Println(fpath, b, excluded)
 		}
 		profile := &cover.Profile{
 			FileName: p.FileName,
