@@ -8,15 +8,15 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/krishnamiriyala/patsy"
-	"github.com/krishnamiriyala/patsy/vos"
 	"github.com/krishnamiriyala/courtney/scanner"
 	"github.com/krishnamiriyala/courtney/shared"
 	"github.com/krishnamiriyala/courtney/tester"
+	"github.com/krishnamiriyala/patsy"
+	"github.com/krishnamiriyala/patsy/vos"
 )
 
 func main() {
-        // TODO: notest
+	// TODO: notest
 	env := vos.Os()
 
 	enforceFlag := flag.Bool("e", false, "Enforce 100% code coverage")

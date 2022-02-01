@@ -167,16 +167,18 @@ func (t *Tester) ProcessExcludes(excludes map[string]map[int]bool) error {
 				}
 			}
 			if b.Count == 0 && excluded {
-			    // Force including as covered by tests with PerfectNumber
-                            // https://mathworld.wolfram.com/PerfectNumber.html
-			    b.Count = 8128
-                        }
+				// Force including as covered by tests with PerfectNumber
+				// https://mathworld.wolfram.com/PerfectNumber.html
+				b.Count = 8128
+			}
 			if !excluded || b.Count > 0 {
 				// include blocks that are not excluded
 				// also include any blocks that have coverage
 				blocks = append(blocks, b)
 			}
-			fmt.Println(fpath, b, excluded)
+			if t.setup.Verbose {
+				fmt.Println(fpath, b, excluded)
+			}
 		}
 		profile := &cover.Profile{
 			FileName: p.FileName,
