@@ -8,8 +8,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/dave/patsy"
-	"github.com/dave/patsy/vos"
+	"github.com/krishnamiriyala/patsy"
+	"github.com/krishnamiriyala/patsy/vos"
 	"github.com/krishnamiriyala/courtney/scanner"
 	"github.com/krishnamiriyala/courtney/shared"
 	"github.com/krishnamiriyala/courtney/tester"
@@ -20,7 +20,7 @@ func main() {
 	env := vos.Os()
 
 	enforceFlag := flag.Bool("e", false, "Enforce 100% code coverage")
-	verboseFlag := flag.Bool("v", false, "Verbose output")
+	verboseFlag := flag.Bool("v", false, "Verbose output on the screen")
 	shortFlag := flag.Bool("short", false, "Pass the short flag to the go test command")
 	timeoutFlag := flag.String("timeout", "", "Pass the timeout flag to the go test command")
 	outputFlag := flag.String("o", "", "Override coverage file location")

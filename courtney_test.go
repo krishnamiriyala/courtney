@@ -12,9 +12,9 @@ import (
 
 	"os"
 
-	"github.com/dave/patsy"
-	"github.com/dave/patsy/builder"
-	"github.com/dave/patsy/vos"
+	"github.com/krishnamiriyala/patsy"
+	"github.com/krishnamiriyala/patsy/builder"
+	"github.com/krishnamiriyala/patsy/vos"
 	"github.com/krishnamiriyala/courtney/shared"
 )
 

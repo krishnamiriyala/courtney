@@ -82,7 +82,7 @@ courtney .
 
 To test the `a` package, it's sub-packages and the `b` package: 
 ```
-courtney github.com/dave/a/... github.com/dave/b
+courtney github.com/krishnamiriyala/a/... github.com/krishnamiriyala/b
 ```
 
 # Options
